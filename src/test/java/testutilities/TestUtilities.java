@@ -10,9 +10,6 @@ public class TestUtilities {
 
     static {
         try {
-//            String currentDir = System.getProperty("user.dir");
-//            String filepath = currentDir + "\\src\\test\\resources\\config.properties";
-//            FileInputStream in = new FileInputStream(filepath);
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream in = loader.getResourceAsStream("\\config.properties");
             defaultProps.load(in);
@@ -20,9 +17,8 @@ public class TestUtilities {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+    
 
     /**
      * gets key value from properties file
