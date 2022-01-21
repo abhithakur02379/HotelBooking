@@ -1,16 +1,23 @@
 package auth;
 
+import booking.GetBookingIds;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import org.slf4j.Logger;
 import testutilities.TestUtilities;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public class CreateToken {
+
+    private static final Logger LOGGER = getLogger(CreateToken.class);
+
 
     public String generateToken(){
 
@@ -29,7 +36,7 @@ public class CreateToken {
         validatableResponse.statusCode(200);
 
         String token = response.path("token");
-        System.out.println("Generated token is : " + token);
+        LOGGER.info("Generated token is : " + token);
         return token;
     }
 }
