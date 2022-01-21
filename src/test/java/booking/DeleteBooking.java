@@ -8,12 +8,9 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.slf4j.Logger;
 import testutilities.TestUtilities;
 
 import java.io.IOException;
-
-import static org.slf4j.LoggerFactory.getLogger;
 
 
 public class DeleteBooking {

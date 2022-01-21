@@ -1,24 +1,27 @@
 package testutilities;
 
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class TestUtilities {
 
     private static Properties defaultProps = new Properties();
+
     static {
         try {
-            String currentDir = System.getProperty("user.dir");
-            String filepath = currentDir + "\\src\\test\\resources\\config.properties";
-            FileInputStream in = new FileInputStream(filepath);
+//            String currentDir = System.getProperty("user.dir");
+//            String filepath = currentDir + "\\src\\test\\resources\\config.properties";
+//            FileInputStream in = new FileInputStream(filepath);
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream in = loader.getResourceAsStream("\\config.properties");
             defaultProps.load(in);
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     /**
