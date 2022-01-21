@@ -6,19 +6,20 @@ import java.util.Properties;
 
 public class TestUtilities {
 
-    private static Properties defaultProps = new Properties();
+    private static final Properties defaultProps = new Properties();
 
     static {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream in = loader.getResourceAsStream("\\config.properties");
             defaultProps.load(in);
+            assert in != null;
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 
     /**
      * gets key value from properties file
