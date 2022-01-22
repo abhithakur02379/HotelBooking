@@ -21,7 +21,7 @@ public class GetBookingIds {
 
     private static final Logger LOGGER = getLogger(GetBookingIds.class);
 
-
+    ArrayList<Integer> bookingId;
     CreateBooking createBooking = new CreateBooking();
     Response res;
 
@@ -50,7 +50,7 @@ public class GetBookingIds {
         ValidatableResponse validatableResponse = response.then().log().all();
         validatableResponse.statusCode(200);
         validatableResponse.statusLine("HTTP/1.1 200 OK");
-        ArrayList<String> bookingId = response.jsonPath().getJsonObject("bookingid");
+        bookingId = response.jsonPath().getJsonObject("bookingid");
         Assert.assertTrue(bookingId.size() > 0);
         LOGGER.info(String.valueOf(bookingId));
 
@@ -96,13 +96,12 @@ public class GetBookingIds {
         ValidatableResponse validatableResponse = response.then().log().all();
         validatableResponse.statusCode(200);
         validatableResponse.statusLine("HTTP/1.1 200 OK");
-        ArrayList<String> bookingId = response.jsonPath().getJsonObject("bookingid");
+        bookingId = response.jsonPath().getJsonObject("bookingid");
         if (bookingId.size() > 0){
             LOGGER.info(String.valueOf(bookingId));
         } else {
             LOGGER.info("No Booking Id Found with Provided Values");
         }
-        Assert.assertTrue(bookingId.size() > 0);
 
     }
 
@@ -125,13 +124,12 @@ public class GetBookingIds {
         ValidatableResponse validatableResponse = response.then().log().all();
         validatableResponse.statusCode(200);
         validatableResponse.statusLine("HTTP/1.1 200 OK");
-        ArrayList<String> bookingId = response.jsonPath().getJsonObject("bookingid");
+        bookingId = response.jsonPath().getJsonObject("bookingid");
         if (bookingId.size() > 0){
             LOGGER.info(String.valueOf(bookingId));
         } else {
             LOGGER.info("No Booking Id Found with Provided Values");
         }
-        Assert.assertTrue(bookingId.size() > 0);
 
     }
 
