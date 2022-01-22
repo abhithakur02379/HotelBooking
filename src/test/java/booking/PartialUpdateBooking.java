@@ -76,7 +76,7 @@ public class PartialUpdateBooking extends CreateBooking {
 
 
     /**
-     * Test to update booking with partial payload
+     * Test to update booking with Invalid URL
      */
     @Test
     public void testPartialUpdateBookingWithInvalidURL() throws IOException {
