@@ -13,33 +13,22 @@ import testutilities.TestUtilities;
 import java.io.IOException;
 
 
-public class DeleteBooking {
+public class DeleteBooking extends CreateBooking {
 
 
     CreateToken createToken = new CreateToken();
     String token = createToken.generateToken();
-    CreateBooking createBooking = new CreateBooking();
-    Response res;
-
-    {
-        try {
-            res = createBooking.createNewBooking();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /**
      * Test to Delete newly created booking ID
      */
     @Test
-    public void testDeleteBookingByID() {
+    public void testDeleteBookingByID() throws IOException {
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.cookie("token", token);
-        request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/" + res.jsonPath().getJsonObject("bookingid"));
+        request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/" + createNewBooking().path("bookingid"));
         request.log().all();
 
         Response response = request.delete();

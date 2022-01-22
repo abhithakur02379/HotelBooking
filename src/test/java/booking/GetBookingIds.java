@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static org.slf4j.LoggerFactory.getLogger;
 
 
-public class GetBookingIds {
+public class GetBookingIds extends CreateBooking {
 
     private static final Logger LOGGER = getLogger(GetBookingIds.class);
 
@@ -82,12 +82,12 @@ public class GetBookingIds {
      *  Test to get booking Id by First Name and Last Name
      */
     @Test
-    public void testGetBookingIDByFirstAndLastName() {
+    public void testGetBookingIDByFirstAndLastName() throws IOException {
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.queryParam("firstname", (Object) res.jsonPath().getJsonObject("booking.firstname"));
-        request.queryParam("lastname", (Object) res.jsonPath().getJsonObject("booking.lastname"));
+        request.queryParam("firstname", (Object) createNewBooking().path("booking.firstname"));
+        request.queryParam("lastname", (Object) createNewBooking().path("booking.lastname"));
         request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/");
         request.log().all();
 
@@ -110,12 +110,12 @@ public class GetBookingIds {
      *  Test to get booking Id by Check-in date and Check-Out date
      */
     @Test
-    public void testGetBookingIDByCheckInAndCheckOutDate() {
+    public void testGetBookingIDByCheckInAndCheckOutDate() throws IOException {
 
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
-        request.queryParam("checkin",(Object) res.jsonPath().getJsonObject("booking.bookingdates.checkin"));
-        request.queryParam("checkout",(Object) res.jsonPath().getJsonObject("booking.bookingdates.checkout"));
+        request.queryParam("checkin",(Object) createNewBooking().path("booking.bookingdates.checkin"));
+        request.queryParam("checkout",(Object) createNewBooking().path("booking.bookingdates.checkout"));
         request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/");
         request.log().all();
 

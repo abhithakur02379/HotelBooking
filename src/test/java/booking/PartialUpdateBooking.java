@@ -15,27 +15,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PartialUpdateBooking {
+public class PartialUpdateBooking extends CreateBooking {
 
     CreateToken createToken = new CreateToken();
     String token = createToken.generateToken();
-    CreateBooking createBooking = new CreateBooking();
-    Response res;
-
-    {
-        try {
-            res = createBooking.createNewBooking();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     /**
-     *  Test to update booking with partial payload
+     * Test to update booking with partial payload
      */
     @Test
-    public void testPartialUpdateBooking() {
+    public void testPartialUpdateBooking() throws IOException {
 
         Map<String, String> user = new HashMap<>();
         user.put("firstname", "abhishek");
@@ -44,7 +34,7 @@ public class PartialUpdateBooking {
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.cookie("token", token);
-        request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/" + res.jsonPath().getJsonObject("bookingid"));
+        request.baseUri(TestUtilities.getProperty("baseURI") + "/booking/" + createNewBooking().path("bookingid"));
         request.body(user).log().all();
 
         Response response = request.patch();
@@ -60,10 +50,10 @@ public class PartialUpdateBooking {
 
 
     /**
-     *  Test to update partial booking with Invalid/Expired token
+     * Test to update partial booking with Invalid/Expired token
      */
     @Test
-    public void testPartialUpdateBookingWithInvalidToken() {
+    public void testPartialUpdateBookingWithInvalidToken() throws IOException {
 
         Map<String, String> user = new HashMap<>();
         user.put("firstname", "abhishek");
@@ -72,7 +62,7 @@ public class PartialUpdateBooking {
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.cookie("token", "b966aae02653bfe");
-        request.baseUri(TestUtilities.getProperty("baseURI") + "/bookings/" + res.jsonPath().getJsonObject("bookingid"));
+        request.baseUri(TestUtilities.getProperty("baseURI") + "/bookings/" + createNewBooking().path("bookingid"));
         request.body(user).log().all();
 
         Response response = request.patch();
@@ -84,11 +74,12 @@ public class PartialUpdateBooking {
 
     }
 
+
     /**
-     *  Test to update booking with partial payload
+     * Test to update booking with partial payload
      */
     @Test
-    public void testPartialUpdateBookingWithInvalidURL() {
+    public void testPartialUpdateBookingWithInvalidURL() throws IOException {
 
         Map<String, String> user = new HashMap<>();
         user.put("firstname", "abhishek");
@@ -97,7 +88,7 @@ public class PartialUpdateBooking {
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.cookie("token", token);
-        request.baseUri(TestUtilities.getProperty("baseURI") + "/bookings/" + res.jsonPath().getJsonObject("bookingid"));
+        request.baseUri(TestUtilities.getProperty("baseURI") + "/bookings/" + createNewBooking().path("bookingid"));
         request.body(user).log().all();
 
         Response response = request.patch();
