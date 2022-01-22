@@ -1,3 +1,3 @@
 "# HotelBooking" 
 
-Please run the tests from TestRunner.java class file under testrunner package.
+Please run the testsuite from TestRunner.java class file under testrunner package.
