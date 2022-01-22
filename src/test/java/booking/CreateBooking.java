@@ -19,7 +19,7 @@ public class CreateBooking {
     private static final Logger LOGGER = getLogger(CreateBooking.class);
 
 
-    File payload = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\createbooking.json");
+    File payload = new File(System.getProperty("user.dir") + "/src/test/resources/createbooking.json");
 
     public Response createNewBooking() throws IOException {
 

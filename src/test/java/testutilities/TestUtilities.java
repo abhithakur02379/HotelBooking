@@ -10,7 +10,7 @@ public class TestUtilities {
     static {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            InputStream in = loader.getResourceAsStream("\\config.properties");
+            InputStream in = loader.getResourceAsStream("config.properties");
             defaultProps.load(in);
             assert in != null;
             in.close();
